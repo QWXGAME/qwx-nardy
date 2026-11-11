@@ -1,0 +1,30 @@
+{
+  "name": "QWX NARDY — нарды онлайн",
+  "short_name": "QWX NARDY",
+  "description": "Длинные и короткие нарды в 3D: с друзьями, ботами и на фишки",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#050203",
+  "theme_color": "#050203",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

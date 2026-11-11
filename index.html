@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#050203" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QWX NARDY" />
+  <title>QWX NARDY — длинные и короткие нарды</title>
+  <!-- скрипт Telegram грузим только когда игра открыта как мини-приложение (в обычном браузере — лишний запрос) -->
+  <script>if (/tgWebApp/.test(location.hash + location.search) || window.TelegramWebviewProxy) document.write('<script src="https://telegram.org/js/telegram-web-app.js"><\/script>');</script>
+  <meta name="description" content="Нарды онлайн в 3D: длинные и короткие, с друзьями и ботами, на фишки — прямо в браузере" />
+  <script>
+    // 3D: текстуры зала качаем сразу, параллельно с кодом. В 2D они не нужны.
+    (function () {
+      var v = ''; try { v = localStorage.getItem('qb.view') || ''; } catch (e) {}
+      if (v === '2d') return;
+      ['textures/manifest.json', 'textures/parquet-1024.map.webp', 'textures/clubwall-512.map.webp'].forEach(function (f, i) {
+        var l = document.createElement('link'); l.rel = 'preload'; l.href = f; l.as = i ? 'image' : 'fetch'; if (!i) l.crossOrigin = 'anonymous';
+        document.head.appendChild(l);
+      });
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- шрифты: Bodoni Moda — заголовки клуба, Manrope — интерфейс, Playfair — индексы карт и надписи кнопок -->
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;0,6..96,800;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="splash" id="splash">
+    <div class="splash-glow"></div>
+    <div class="logo">
+      <div class="dice"><i>⚄</i><i>⚂</i></div>
+      <h1><span>Q</span><span>W</span><span>X</span><em>NARDY</em></h1>
+      <p>длинные и короткие</p>
+    </div>
+    <div class="loader">
+      <div class="track"><div class="fill" id="load-bar"></div></div>
+      <div class="meta"><span id="load-label" class="in">Расставляем фишки</span><b id="load-pct">0%</b></div>
+    </div>
+  </div>
+  <div id="stage"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+  <script type="module" src="/src/client/main.ts"></script>
+</body>
+</html>
